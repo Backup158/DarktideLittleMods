@@ -8,5 +8,6 @@ return {
 			mod_localization = "DiscardEmperorsGift/scripts/mods/DiscardEmperorsGift/DiscardEmperorsGift_localization",
 		})
 	end,
+	version = "1.0.0",
 	packages = {},
 }
