@@ -62,4 +62,17 @@ return {
 	notifications_to_use_description = {
 		en = "Types of messages to be sent.",
 	},
+	--  Messages Sent
+	drink_water = {
+		en = "Drink Water",
+	},
+	drink_water_description = {
+		en = "Reminds player to drink water.",
+	},
+	drink_martini = {
+		en = "Drink Martini",
+	},
+	drink_martini_description = {
+		en = "Reminds user to make and drink martinis.",
+	},
 }

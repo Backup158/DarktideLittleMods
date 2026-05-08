@@ -1,4 +1,54 @@
 local mod = get_mod("ReminderMessages")
+
+-- ##################
+-- Data and Performance
+-- ##################
+local table = table
+local table_insert = table.insert
+local table_clone = table.clone
+
+-- Loads available messages
+--	this file loads before localization
+mod:io_dofile("ReminderMessages/scripts/mods/ReminderMessages/Messages")
+
+local notifications_used = {}
+local message_notification_options = {
+	{
+		setting_id = "notify_when",
+		type = "group",
+		sub_widgets = {
+			{
+				setting_id = "notify_immediately",
+				type = "checkbox",
+				default_value = false, 
+				sub_widgets = {
+					{
+						setting_id = "notify_time_interval",
+						type = "numeric",
+						range = {1, 69420},
+						unit_text = "notify_time_interval_units",
+						decimals_number = 0,
+						default_value = 300, -- default 5 mins 
+					},
+				},
+			},
+			{
+				setting_id = "notify_after_game",
+				type = "checkbox",
+				default_value = false, 
+			},
+		},
+	}
+}
+for message_option, _ in pairs(mod.messages) do
+	table.insert(notifications_used, {
+		setting_id = message_option,
+		type = "checkbox",
+		default_value = false, 
+		sub_widgets = table_clone(message_notification_options)
+	})
+end
+
 return {
 	name = mod:localize("mod_name"),
 	description = mod:localize("mod_description"),
@@ -27,30 +77,9 @@ return {
 				},
 			},
 			{
-				setting_id = "notify_when",
+				setting_id = "notifications_to_use",
 				type = "group",
-				sub_widgets = {
-					{
-						setting_id = "notify_immediately",
-						type = "checkbox",
-						default_value = false, 
-						sub_widgets = {
-							{
-								setting_id = "notify_time_interval",
-								type = "numeric",
-								range = {1, 69420},
-								unit_text = "notify_time_interval_units",
-								decimals_number = 0,
-								default_value = 300, -- default 5 mins 
-							},
-						},
-					},
-					{
-						setting_id = "notify_after_game",
-						type = "checkbox",
-						default_value = false, 
-					},
-				},
+				sub_widgets = notifications_used,
 			},
 		},
 	}
