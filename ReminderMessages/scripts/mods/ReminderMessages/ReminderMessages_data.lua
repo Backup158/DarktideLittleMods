@@ -14,29 +14,25 @@ mod:io_dofile("ReminderMessages/scripts/mods/ReminderMessages/Messages")
 local notifications_used = {}
 local message_notification_options = {
 	{
-		setting_id = "notify_when",
-		type = "group",
-		sub_widgets = {
-			{
-				setting_id = "notify_immediately",
-				type = "checkbox",
-				default_value = false, 
-				sub_widgets = {
-					{
-						setting_id = "notify_time_interval",
-						type = "numeric",
-						range = {1, 69420},
-						unit_text = "notify_time_interval_units",
-						decimals_number = 0,
-						default_value = 300, -- default 5 mins 
-					},
+		{
+			setting_id = "notify_immediately",
+			type = "checkbox",
+			default_value = false, 
+			sub_widgets = {
+				{
+					setting_id = "notify_time_interval",
+					type = "numeric",
+					range = {1, 69420},
+					unit_text = "notify_time_interval_units",
+					decimals_number = 0,
+					default_value = 300, -- default 5 mins 
 				},
 			},
-			{
-				setting_id = "notify_after_game",
-				type = "checkbox",
-				default_value = false, 
-			},
+		},
+		{
+			setting_id = "notify_after_game",
+			type = "checkbox",
+			default_value = false, 
 		},
 	}
 }
