@@ -1,6 +1,4 @@
-local mod = get_mod("ReminderMessages")
-
-
+-- There are also localizations in Messages.lua
 
 return {
 	mod_name = {
@@ -57,5 +55,11 @@ return {
 	},
 	notify_after_game_description = {
 		en = "Sends notification whenever the game changes maps.",
+	},
+	notifications_to_use = {
+		en = "Messages to Send",
+	},
+	notifications_to_use_description = {
+		en = "Types of messages to be sent.",
 	},
 }
