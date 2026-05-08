@@ -7,8 +7,8 @@ mod.version = "1.0.0"
 -- Gets current language
 -- Thanks, Ashe
 local current_lang = Application.user_setting("language_id")
-local option_locs = {}
-option_locs[current_lang] = Managers.localization:localize(game_loc)
+--local option_locs = {}
+--option_locs[current_lang] = Managers.localization:localize(game_loc)
 
 -- #############################
 -- Helper Functions
