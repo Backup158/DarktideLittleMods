@@ -75,4 +75,11 @@ return {
 	drink_martini_description = {
 		en = "Reminds user to make and drink martinis.",
 	},
+	heresy = {
+		en = "HERESY!",
+	},
+	heresy_description = {
+		-- dark red
+		en = "Reminds user to praise the dark gods.\n{#color(158, 0, 0)}=][= THE EMPEROR'S HOLY INQUISITION HAS BEEN ALERTED =][={#reset()}",
+	},
 }
