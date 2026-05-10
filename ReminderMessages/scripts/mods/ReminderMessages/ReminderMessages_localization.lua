@@ -56,6 +56,12 @@ return {
 	notify_after_game_description = {
 		en = "Sends notification whenever the game changes maps.",
 	},
+	notify_on_death = {
+		en = "Notify After Death",
+	},
+	notify_on_death_description = {
+		en = "Sends notification whenever the player dies.",
+	},
 	notifications_to_use = {
 		en = "Messages to Send",
 	},
