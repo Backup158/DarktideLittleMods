@@ -62,12 +62,17 @@ end
 
 local function send_all_reminders(event_name) 
     for reminder_name, _ in pairs(mod.messages) do
+        mod:echo("Reminder name: "..reminder_name)
         if settings_messages[reminder_name][event_name] then
+            mod:echo("Event enabled: "..event_name)
             -- Time mod size is basically like getting random quote
-	        local time = Managers.time:time("gameplay") or Managers.time:time("main")
-            local index_to_use = time % #(mod.messages[event_name])
+            local amount_of_messages = #(mod.messages[reminder_name])
+	        local time = Managers.time:time("gameplay") or Managers.time:time("main") or math.random(1, amount_of_messages)
+            mod:echo("Time: "..tostring(time))
+            local index_to_use = (time % amount_of_messages) + 1
+            mod:echo("Index: "..tostring(index_to_use))
             if use_notify then
-                mod:notify(mod.messages[event_name][index_to_use])
+                mod:notify(mod.messages[reminder_name][index_to_use])
             end
 
             if use_sound then
