@@ -72,7 +72,7 @@ local function send_all_reminders(event_name)
             local index_to_use = (time % amount_of_messages) + 1
             mod:echo("Index: "..tostring(index_to_use))
             if use_notify then
-                mod:notify(mod.messages[reminder_name][index_to_use])
+                mod:notify(mod.messages[reminder_name][current_language][index_to_use])
             end
 
             if use_sound then
