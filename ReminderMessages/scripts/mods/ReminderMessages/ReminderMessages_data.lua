@@ -15,8 +15,7 @@ local notifications_used = {}
 for message_option, _ in pairs(mod.messages) do
 	table.insert(notifications_used, {
 		setting_id = message_option,
-		type = "checkbox",
-		default_value = false, 
+		type = "group",
 		sub_widgets = {
 			{
 				setting_id = "notify_immediately_"..message_option,

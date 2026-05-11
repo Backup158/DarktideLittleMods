@@ -51,7 +51,6 @@ local function refresh_settings_cache()
         if not val then
             settings_messages[reminder_name] = {}
         end
-        settings_messages[reminder_name].enabled = mod:get(reminder_name)
         settings_messages[reminder_name].notify_immediately = mod:get("notify_immediately_"..reminder_name)
         settings_messages[reminder_name].notify_immediately_timer = mod:get("notify_time_interval_"..reminder_name)
         settings_messages[reminder_name].after_win = mod:get("notify_after_win_"..reminder_name)
@@ -63,7 +62,7 @@ end
 
 local function send_all_reminders(event_name) 
     for reminder_name, _ in pairs(mod.messages) do
-        if settings_messages[reminder_name].enabled and settings_messages[reminder_name][event_name] then
+        if settings_messages[reminder_name][event_name] then
 	        local time = Managers.time:time("gameplay")
             local index_to_use = time % #(mod.messages[event_name])
             if use_notify then
