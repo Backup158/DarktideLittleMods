@@ -63,6 +63,7 @@ end
 local function send_all_reminders(event_name) 
     for reminder_name, _ in pairs(mod.messages) do
         if settings_messages[reminder_name][event_name] then
+            -- Time mod size is basically like getting random quote
 	        local time = Managers.time:time("gameplay") or Managers.time:time("main")
             local index_to_use = time % #(mod.messages[event_name])
             if use_notify then
