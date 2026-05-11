@@ -74,6 +74,12 @@ return {
 	notify_on_death_description = {
 		en = "Sends notification whenever the player dies.",
 	},
+	notify_on_load_screen = {
+		en = "Notify on Load Screen",
+	},
+	notify_on_load_screen_description = {
+		en = "Sends notification whenever a loading screen starts.",
+	},
 	notifications_to_use = {
 		en = "Messages to Send",
 	},

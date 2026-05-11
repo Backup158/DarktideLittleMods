@@ -34,6 +34,7 @@ local use_sound
 -- #############################
 -- Requirements
 -- #############################
+local LoadingView = require("scripts/ui/views/loading_view/loading_view")
 -- Gets current language
 -- Thanks, Ashe
 local current_language = Application.user_setting("language_id")
@@ -56,6 +57,7 @@ local function refresh_settings_cache()
         settings_messages[reminder_name].after_win = mod:get("notify_after_win_"..reminder_name)
         settings_messages[reminder_name].after_loss = mod:get("notify_after_loss_"..reminder_name)
         settings_messages[reminder_name].after_death = mod:get("notify_after_death_"..reminder_name)
+        settings_messages[reminder_name].on_load_screen = mod:get("notify_on_load_screen_"..reminder_name)
     end
 end
 
@@ -88,6 +90,11 @@ mod:hook_safe("CinematicSceneExtension", "setup_from_component", function(self)
     elseif self._cinematic_name == "outro_fail" then
         send_all_reminders("after_loss")
     end
+end)
+
+-- Enter load screen
+mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
+    send_all_reminders("on_load_screen")
 end)
 
 -- #########################################

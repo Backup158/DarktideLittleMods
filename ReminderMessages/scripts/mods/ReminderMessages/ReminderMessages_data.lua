@@ -38,6 +38,13 @@ for message_option, _ in pairs(mod.messages) do
 				},
 			},
 			{
+				setting_id = "notify_on_load_screen_"..message_option,
+				title = "notify_on_load_screen",
+				tooltip = "notify_on_load_screen_description",
+				type = "checkbox",
+				default_value = false, 
+			},
+			{
 				setting_id = "notify_on_death_"..message_option,
 				title = "notify_on_death",
 				tooltip = "notify_on_death_description",
