@@ -56,6 +56,18 @@ return {
 	notify_after_game_description = {
 		en = "Sends notification whenever the game changes maps.",
 	},
+	notify_after_win = {
+		en = "Notify After Game Win",
+	},
+	notify_after_win_description = {
+		en = "Sends notification whenever the game ends in victory.",
+	},
+	notify_after_loss = {
+		en = "Notify After Game Loss",
+	},
+	notify_after_loss_description = {
+		en = "Sends notification whenever the game ends in defeat.",
+	},
 	notify_on_death = {
 		en = "Notify After Death",
 	},
