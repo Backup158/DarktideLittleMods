@@ -11,7 +11,7 @@ mod.messages = {
 			"Reminder to drink your water!",
 			"Stay hydrated <3",
 			"Drink water, you beautiful dehydrated varlet <3",
-			"Drink water| take care of yourself.",
+			"Drink water; take care of yourself.",
 			"Pre-servitors require regular fluid intake for improved longevity.",
 			"DRINK DRINK DRINK",
 		},
