@@ -28,6 +28,7 @@ local table_shallow_copy = table.shallow_copy
 -- hmm read online that table access is similar for global/local
 -- local messages_cache = table_clone(mod.messages)
 local settings_messages = table_shallow_copy(mod.messages)
+local use_echo
 local use_notify
 local use_sound
 local using_debug_mode
@@ -48,6 +49,7 @@ local current_language
 -- #############################
 local function refresh_settings_cache() 
     using_debug_mode = mod:get("using_debug_mode")
+    use_echo = mod:get("message_use_echo")
     use_notify = mod:get("message_use_notify")
     use_sound = mod:get("message_use_sound")
     current_language = LocalizationManager._language
@@ -70,14 +72,16 @@ local function send_all_reminders(event_name)
         if using_debug_mode then mod:echo("Reminder name: "..reminder_name) end
         if settings_messages[reminder_name][event_name] then
             if using_debug_mode then mod:echo("Event enabled: "..event_name) end
+
             local amount_of_messages
+            local index_to_use
             -- Time mod size is basically like getting random quote
 	        --local time = Managers.time:time("gameplay") or Managers.time:time("main") or math.random(1, amount_of_messages)
             --mod:echo("Time: "..tostring(time))
             --local index_to_use = (time % amount_of_messages) + 1
-            local index_to_use
             if using_debug_mode then mod:echo("Language: "..tostring(current_language)) end
-            if use_notify then
+
+            if use_echo or use_notify then
                 local temp_current_lang
                 if mod.messages[reminder_name][current_language] then
                     temp_current_lang = current_language
@@ -89,7 +93,13 @@ local function send_all_reminders(event_name)
                 amount_of_messages = #(mod.messages[reminder_name][temp_current_lang])
                 index_to_use = math.random(1, amount_of_messages)
                 if using_debug_mode then mod:echo("Index: "..tostring(index_to_use)) end
-                mod:notify(mod.messages[reminder_name][temp_current_lang][index_to_use])
+                local message = mod.messages[reminder_name][temp_current_lang][index_to_use]
+                if use_echo then
+                    mod:echo(message)
+                end
+                if use_notify then
+                    mod:notify(message)
+                end
             end
 
             if use_sound then

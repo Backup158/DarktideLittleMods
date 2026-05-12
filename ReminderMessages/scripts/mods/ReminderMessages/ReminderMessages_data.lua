@@ -84,6 +84,11 @@ return {
 				type = "group",
 				sub_widgets = {
 					{
+						setting_id = "message_use_echo",
+						type = "checkbox",
+						default_value = true, 
+					},
+					{
 						setting_id = "message_use_notify",
 						type = "checkbox",
 						default_value = true, 

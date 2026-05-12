@@ -22,11 +22,17 @@ return {
 	message_use_description = {
 		en = "Which ways the mods will notify you.",
 	},
+	message_use_echo = {
+		en = "Echo",
+	},
+	message_use_echo_description = {
+		en = "Chat message (only visible to you).",
+	},
 	message_use_notify = {
 		en = "Notify",
 	},
 	message_use_notify_description = {
-		en = "Box notification and chat message",
+		en = "Box notification on the right side of the screen.",
 	},
 	message_use_sound = {
 		en = "Sound",
