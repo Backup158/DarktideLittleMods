@@ -39,7 +39,8 @@ local LoadingView = require("scripts/ui/views/loading_view/loading_view")
 local LocalizationManager = class("LocalizationManager")
 -- Gets current language
 -- Thanks, Ashe
-local current_language = Application.user_setting("language_id") or LocalizationManager.language()
+--local current_language = Application.user_setting("language_id") or LocalizationManager.language() or LocalizationManager._language
+local current_language
 -- Managers.localization:localize(game_loc)
 
 -- #############################
@@ -49,7 +50,7 @@ local function refresh_settings_cache()
     using_debug_mode = mod:get("using_debug_mode")
     use_notify = mod:get("message_use_notify")
     use_sound = mod:get("message_use_sound")
-    current_language = Application.user_setting("language_id") or LocalizationManager.language()
+    current_language = LocalizationManager._language
 
     for reminder_name, val in pairs(settings_messages) do
         if not val then
@@ -82,6 +83,7 @@ local function send_all_reminders(event_name)
                     temp_current_lang = current_language
                 -- Fallback to English
                 else
+                    if using_debug_mode then mod:echo("Falling back to English") end
                     temp_current_lang = "en"
                 end
                 amount_of_messages = #(mod.messages[reminder_name][temp_current_lang])
@@ -106,14 +108,17 @@ mod:hook_safe("CinematicSceneExtension", "setup_from_component", function(self)
     -- Outro is "outro_win" or "outro_fail"
     --if string_match(self._cinematic_name, "outro_") then
     if self._cinematic_name == "outro_win" then
+        if using_debug_mode then mod:echo("Mission success") end
         send_all_reminders("after_win")
     elseif self._cinematic_name == "outro_fail" then
+        if using_debug_mode then mod:echo("Mission failed") end
         send_all_reminders("after_loss")
     end
 end)
 
 -- Enter load screen
 mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
+    if using_debug_mode then mod:echo("Entering load screen") end
     send_all_reminders("on_load_screen")
 end)
 
