@@ -117,7 +117,9 @@ mod:hook_safe("CinematicSceneExtension", "setup_from_component", function(self)
 end)
 
 -- Enter load screen
-mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
+-- using hook so it sends notifications first. otherwise, it only appears after the loadscreen is done
+--mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
+mod:hook(LoadingView, "init", function(func, self, settings, context)
     if using_debug_mode then mod:echo("Entering load screen") end
     send_all_reminders("on_load_screen")
 end)
