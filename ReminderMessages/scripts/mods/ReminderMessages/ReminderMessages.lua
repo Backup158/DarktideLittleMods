@@ -35,9 +35,10 @@ local use_sound
 -- Requirements
 -- #############################
 local LoadingView = require("scripts/ui/views/loading_view/loading_view")
+local LocalizationManager = class("LocalizationManager")
 -- Gets current language
 -- Thanks, Ashe
-local current_language = Application.user_setting("language_id")
+local current_language = Application.user_setting("language_id") or LocalizationManager.language()
 -- Managers.localization:localize(game_loc)
 
 -- #############################
@@ -46,6 +47,7 @@ local current_language = Application.user_setting("language_id")
 local function refresh_settings_cache() 
     use_notify = mod:get("message_use_notify")
     use_sound = mod:get("message_use_sound")
+    current_language = Application.user_setting("language_id") or LocalizationManager.language()
 
     for reminder_name, val in pairs(settings_messages) do
         if not val then
@@ -65,14 +67,25 @@ local function send_all_reminders(event_name)
         mod:echo("Reminder name: "..reminder_name)
         if settings_messages[reminder_name][event_name] then
             mod:echo("Event enabled: "..event_name)
+            local amount_of_messages
             -- Time mod size is basically like getting random quote
-            local amount_of_messages = #(mod.messages[reminder_name])
-	        local time = Managers.time:time("gameplay") or Managers.time:time("main") or math.random(1, amount_of_messages)
-            mod:echo("Time: "..tostring(time))
-            local index_to_use = (time % amount_of_messages) + 1
-            mod:echo("Index: "..tostring(index_to_use))
+	        --local time = Managers.time:time("gameplay") or Managers.time:time("main") or math.random(1, amount_of_messages)
+            --mod:echo("Time: "..tostring(time))
+            --local index_to_use = (time % amount_of_messages) + 1
+            local index_to_use
+            mod:echo("Language: "..tostring(current_language))
             if use_notify then
-                mod:notify(mod.messages[reminder_name][current_language][index_to_use])
+                local temp_current_lang
+                if mod.messages[reminder_name][current_language] then
+                    temp_current_lang = current_language
+                -- Fallback to English
+                else
+                    temp_current_lang = "en"
+                end
+                amount_of_messages = #(mod.messages[reminder_name][temp_current_lang])
+                index_to_use = math.random(1, amount_of_messages)
+                mod:echo("Index: "..tostring(index_to_use))
+                mod:notify(mod.messages[reminder_name][temp_current_lang][index_to_use])
             end
 
             if use_sound then
