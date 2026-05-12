@@ -1,5 +1,8 @@
 local mod = get_mod("ReminderMessages")
 
+--[[
+This structure is so translators have less restrictions. Since not every phrase can be easily translated, each section does not require every single message to have an equivalent translation
+]] 
 mod.messages = {
 	drink_water = {
 		en = {
@@ -12,6 +15,12 @@ mod.messages = {
 			"Pre-servitors require regular fluid intake for improved longevity.",
 			"DRINK DRINK DRINK",
 		},
+		--[[
+		uwu = {
+			"nya nya nya",
+			"uuhhuu HUUUUUUU UUUUUUUUUUUUUUUUUUH",
+		},
+		]]
 	},
 	drink_martini = {
 		en = {
