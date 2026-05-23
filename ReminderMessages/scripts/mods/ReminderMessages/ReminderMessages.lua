@@ -129,14 +129,52 @@ end)
 -- Enter load screen
 -- using hook so it sends notifications first. otherwise, it only appears after the loadscreen is done
 --mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
+--[[
 mod:hook(LoadingView, "init", function(func, self, settings, context)
     if using_debug_mode then mod:echo("Entering load screen") end
     send_all_reminders("on_load_screen")
+    func(self, settings, context)
+end)
+]]
+
+-- Player Health
+-- Death
+mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
+    if unit then
+        local player = Managers.player:player_by_unit(unit)
+        if player then		
+            local account_id = player:account_id() or player:name()			
+            local player_state = self._character_state_read_component.state_name
+
+            self._player_state_tracker = self._player_state_tracker or {}
+            self._player_state_tracker[account_id] = self._player_state_tracker[account_id] or {}
+            self._player_state_tracker[account_id].state = self._player_state_tracker[account_id].state or {}
+            
+            if self._player_state_tracker[account_id].state ~= player_state then
+                if player_state == "dead" then
+                    if using_debug_mode then mod:echo("Player has died") end
+                    send_all_reminders("on_death")
+                end
+            end
+        end
+    end
+    func(self, unit, dt, t, ...)
 end)
 
 -- #########################################
 -- Event Executions
 -- #########################################
+-- ############
+-- Check Game State Changes
+-- 	Entering a match
+-- ############
+function mod.on_game_state_changed(status, state_name)
+	-- think this means "entering gameplay" from "hub"
+	if state_name == "GameplayStateRun" and status == "enter" and Managers.state.mission:mission().name ~= "hub_ship" then
+		send_all_reminders("on_load_screen")
+	end
+end
+
 function mod.on_all_mods_loaded()
     mod:info("v" .. mod.version .. mod:localize("mod_version_logging_message"))
     refresh_settings_cache() 

@@ -42,6 +42,7 @@ for message_option, _ in pairs(mod.messages) do
 				tooltip = "notify_on_load_screen_description",
 				type = "checkbox",
 				default_value = false, 
+				--[[
 				sub_widgets = {
 					{
 						setting_id = "notify_on_load_screen_cooldown_"..message_option,
@@ -54,6 +55,7 @@ for message_option, _ in pairs(mod.messages) do
 						default_value = 180, -- default 3 mins 
 					},
 				},
+				]]
 			},
 			{
 				setting_id = "notify_on_death_"..message_option,

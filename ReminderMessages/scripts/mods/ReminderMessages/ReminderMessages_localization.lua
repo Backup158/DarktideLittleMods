@@ -81,6 +81,14 @@ return {
 		en = "Sends notification whenever the player dies.",
 	},
 	notify_on_load_screen = {
+		en = "Notify on Leaving Mourningstar",
+	},
+	notify_on_load_screen_description = {
+		en = "Sends notification whenever the player exits the Mourningstar to gameplay.",
+	},
+	--[[
+	-- I'm removing these
+	notify_on_load_screen = {
 		en = "Notify on Load Screen",
 	},
 	notify_on_load_screen_description = {
@@ -92,6 +100,7 @@ return {
 	notify_on_load_screen_cooldown_description = {
 		en = "After message is sent, the period of time before another message for this event can be sent.",
 	},
+	]]
 	notifications_to_use = {
 		en = "Messages to Send",
 	},
