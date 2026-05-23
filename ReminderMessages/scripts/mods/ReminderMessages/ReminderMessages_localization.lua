@@ -86,6 +86,12 @@ return {
 	notify_on_load_screen_description = {
 		en = "Sends notification whenever a loading screen starts.",
 	},
+	notify_on_load_screen_cooldown = {
+		en = "Cooldown",
+	},
+	notify_on_load_screen_cooldown_description = {
+		en = "After message is sent, the period of time before another message for this event can be sent.",
+	},
 	notifications_to_use = {
 		en = "Messages to Send",
 	},
