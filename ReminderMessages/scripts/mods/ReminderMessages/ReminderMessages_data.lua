@@ -11,72 +11,115 @@ local table_clone = table.clone
 --	this file loads before localization
 mod:io_dofile("ReminderMessages/scripts/mods/ReminderMessages/Messages")
 
-local notifications_used = {}
+local widget_tabs = {
+	{
+		setting_id = "enable_debug_mode",
+		type = "checkbox",
+		default_value = false, 
+	},
+}
 for message_option, _ in pairs(mod.messages) do
-	table.insert(notifications_used, {
+	table.insert(widget_tabs, {
 		setting_id = message_option,
 		type = "group",
 		sub_widgets = {
 			{
-				setting_id = "notify_immediately_"..message_option,
-				title = "notify_immediately",
-				tooltip = "notify_immediately_description",
-				type = "checkbox",
-				default_value = false, 
+				setting_id = "message_use_"..message_option,
+				title = "message_use",
+				tooltip = "message_use_description",
+				type = "group",
 				sub_widgets = {
 					{
-						setting_id = "notify_time_interval_"..message_option,
-						title = "notify_time_interval",
-						tooltip = "notify_time_interval_description",
-						type = "numeric",
-						range = {1, 69420},
-						unit_text = "notify_time_interval_units",
-						decimals_number = 0,
-						default_value = 300, -- default 5 mins 
+						setting_id = "message_use_echo_"..message_option,
+						title = "message_use_echo",
+						tooltip = "message_use_echo_description",
+						type = "checkbox",
+						default_value = true, 
+					},
+					{
+						setting_id = "message_use_notify_"..message_option,
+						title = "message_use_notify",
+						tooltip = "message_use_notify_description",
+						type = "checkbox",
+						default_value = true, 
+					},
+					{
+						setting_id = "message_use_sound_"..message_option,
+						title = "message_use_sound",
+						tooltip = "message_use_sound_description",
+						type = "checkbox",
+						default_value = false, 
 					},
 				},
 			},
 			{
-				setting_id = "notify_on_load_screen_"..message_option,
-				title = "notify_on_load_screen",
-				tooltip = "notify_on_load_screen_description",
-				type = "checkbox",
-				default_value = false, 
-				--[[
+				setting_id = "notifications_to_use_"..message_option,
+				title = "notifications_to_use",
+				tooltip = "notifications_to_use_description",
+				type = "group",
 				sub_widgets = {
 					{
-						setting_id = "notify_on_load_screen_cooldown_"..message_option,
-						title = "notify_on_load_screen_cooldown",
-						tooltip = "notify_on_load_screen_cooldown_description",
-						type = "numeric",
-						range = {1, 2000},
-						unit_text = "notify_time_interval_units",
-						decimals_number = 0,
-						default_value = 180, -- default 3 mins 
+						setting_id = "notify_immediately_"..message_option,
+						title = "notify_immediately",
+						tooltip = "notify_immediately_description",
+						type = "checkbox",
+						default_value = false, 
+						sub_widgets = {
+							{
+								setting_id = "notify_time_interval_"..message_option,
+								title = "notify_time_interval",
+								tooltip = "notify_time_interval_description",
+								type = "numeric",
+								range = {1, 69420},
+								unit_text = "notify_time_interval_units",
+								decimals_number = 0,
+								default_value = 300, -- default 5 mins 
+							},
+						},
+					},
+					{
+						setting_id = "notify_on_load_screen_"..message_option,
+						title = "notify_on_load_screen",
+						tooltip = "notify_on_load_screen_description",
+						type = "checkbox",
+						default_value = false, 
+						--[[
+						sub_widgets = {
+							{
+								setting_id = "notify_on_load_screen_cooldown_"..message_option,
+								title = "notify_on_load_screen_cooldown",
+								tooltip = "notify_on_load_screen_cooldown_description",
+								type = "numeric",
+								range = {1, 2000},
+								unit_text = "notify_time_interval_units",
+								decimals_number = 0,
+								default_value = 180, -- default 3 mins 
+							},
+						},
+						]]
+					},
+					{
+						setting_id = "notify_on_death_"..message_option,
+						title = "notify_on_death",
+						tooltip = "notify_on_death_description",
+						type = "checkbox",
+						default_value = false, 
+					},
+					{
+						setting_id = "notify_after_win_"..message_option,
+						title = "notify_after_win",
+						tooltip = "notify_after_win_description",
+						type = "checkbox",
+						default_value = false, 
+					},
+					{
+						setting_id = "notify_after_loss_"..message_option,
+						title = "notify_after_loss",
+						tooltip = "notify_after_loss_description",
+						type = "checkbox",
+						default_value = false, 
 					},
 				},
-				]]
-			},
-			{
-				setting_id = "notify_on_death_"..message_option,
-				title = "notify_on_death",
-				tooltip = "notify_on_death_description",
-				type = "checkbox",
-				default_value = false, 
-			},
-			{
-				setting_id = "notify_after_win_"..message_option,
-				title = "notify_after_win",
-				tooltip = "notify_after_win_description",
-				type = "checkbox",
-				default_value = false, 
-			},
-			{
-				setting_id = "notify_after_loss_"..message_option,
-				title = "notify_after_loss",
-				tooltip = "notify_after_loss_description",
-				type = "checkbox",
-				default_value = false, 
 			},
 		}
 	})
@@ -87,38 +130,6 @@ return {
 	description = mod:localize("mod_description"),
 	is_togglable = true,
 	options = { 
-		widgets = {
-			{
-				setting_id = "enable_debug_mode",
-				type = "checkbox",
-				default_value = false, 
-			},
-			{
-				setting_id = "message_use",
-				type = "group",
-				sub_widgets = {
-					{
-						setting_id = "message_use_echo",
-						type = "checkbox",
-						default_value = true, 
-					},
-					{
-						setting_id = "message_use_notify",
-						type = "checkbox",
-						default_value = true, 
-					},
-					{
-						setting_id = "message_use_sound",
-						type = "checkbox",
-						default_value = false, 
-					},
-				},
-			},
-			{
-				setting_id = "notifications_to_use",
-				type = "group",
-				sub_widgets = notifications_used,
-			},
-		},
+		widgets = widget_tabs,
 	}
 }

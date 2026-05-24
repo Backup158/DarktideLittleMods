@@ -102,10 +102,10 @@ return {
 	},
 	]]
 	notifications_to_use = {
-		en = "Messages to Send",
+		en = "Trigger Events",
 	},
 	notifications_to_use_description = {
-		en = "Types of messages to be sent.",
+		en = "What causes messages to be sent.",
 	},
 	--  Messages Sent
 	drink_water = {

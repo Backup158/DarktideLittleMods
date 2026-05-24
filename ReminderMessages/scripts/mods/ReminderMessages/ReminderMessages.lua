@@ -49,15 +49,16 @@ local current_language
 -- #############################
 local function refresh_settings_cache() 
     using_debug_mode = mod:get("using_debug_mode")
-    use_echo = mod:get("message_use_echo")
-    use_notify = mod:get("message_use_notify")
-    use_sound = mod:get("message_use_sound")
     current_language = LocalizationManager._language
 
     for reminder_name, val in pairs(settings_messages) do
         if not val then
             settings_messages[reminder_name] = {}
         end
+        settings_messages[reminder_name].use_echo = mod:get("message_use_echo_"..reminder_name)
+        settings_messages[reminder_name].use_notify = mod:get("message_use_notify_"..reminder_name)
+        settings_messages[reminder_name].use_sound = mod:get("message_use_sound_"..reminder_name)
+
         settings_messages[reminder_name].notify_immediately = mod:get("notify_immediately_"..reminder_name)
         settings_messages[reminder_name].notify_immediately_timer = mod:get("notify_time_interval_"..reminder_name)
         settings_messages[reminder_name].after_win = mod:get("notify_after_win_"..reminder_name)
@@ -70,6 +71,10 @@ end
 local function send_all_reminders(event_name) 
     for reminder_name, _ in pairs(mod.messages) do
         if using_debug_mode then mod:echo("Reminder name: "..reminder_name) end
+        local use_echo = settings_messages[reminder_name].use_echo
+        local use_notify = settings_messages[reminder_name].use_notify
+        local use_sound = settings_messages[reminder_name].use_sound
+
         if settings_messages[reminder_name][event_name] then
             if using_debug_mode then mod:echo("Event enabled: "..event_name) end
 
