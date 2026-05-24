@@ -139,7 +139,7 @@ end)
 
 -- Player Health
 -- Death
-mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
+mod:hook_safe(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
     if unit then
         local player = Managers.player:player_by_unit(unit)
         if player then		
@@ -158,7 +158,6 @@ mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, u
             end
         end
     end
-    func(self, unit, dt, t, ...)
 end)
 
 -- #########################################
