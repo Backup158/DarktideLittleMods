@@ -25,7 +25,7 @@ local widget_tabs = {
 	},
 }
 for message_option, _ in pairs(mod.messages) do
-	table.insert(widget_tabs, {
+	table_insert(widget_tabs, {
 		setting_id = message_option,
 		--tab = mod:localize(message_option), -- eh it works fine as is
 		tooltip = message_option.."_description",
