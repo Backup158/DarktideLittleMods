@@ -70,15 +70,21 @@ local function refresh_settings_cache()
     end
 end
 
+local function echo_if_debug(message_string)
+    if using_debug_mode then
+        mod:echo(message_string)
+    end
+end
+
 local function send_all_reminders(event_name) 
     for reminder_name, _ in pairs(mod.messages) do
-        if using_debug_mode then mod:echo("Reminder name: "..reminder_name) end
+        echo_if_debug("Reminder name: "..reminder_name)
         local use_echo = settings_messages[reminder_name].use_echo
         local use_notify = settings_messages[reminder_name].use_notify
         local use_sound = settings_messages[reminder_name].use_sound
 
         if settings_messages[reminder_name][event_name] then
-            if using_debug_mode then mod:echo("Event enabled: "..event_name) end
+            echo_if_debug("Event enabled: "..event_name)
 
             local amount_of_messages
             local index_to_use
@@ -86,7 +92,7 @@ local function send_all_reminders(event_name)
 	        --local time = Managers.time:time("gameplay") or Managers.time:time("main") or math.random(1, amount_of_messages)
             --mod:echo("Time: "..tostring(time))
             --local index_to_use = (time % amount_of_messages) + 1
-            if using_debug_mode then mod:echo("Language: "..tostring(current_language)) end
+            echo_if_debug("Language: "..tostring(current_language))
 
             if use_echo or use_notify then
                 local temp_current_lang
@@ -94,12 +100,12 @@ local function send_all_reminders(event_name)
                     temp_current_lang = current_language
                 -- Fallback to English
                 else
-                    if using_debug_mode then mod:echo("Falling back to English") end
+                    echo_if_debug("Falling back to English")
                     temp_current_lang = "en"
                 end
                 amount_of_messages = #(mod.messages[reminder_name][temp_current_lang])
                 index_to_use = math_random(1, amount_of_messages)
-                if using_debug_mode then mod:echo("Index: "..tostring(index_to_use)) end
+                echo_if_debug("Index: "..tostring(index_to_use))
                 local message = mod.messages[reminder_name][temp_current_lang][index_to_use]
                 if use_echo then
                     mod:echo(message)
@@ -125,10 +131,10 @@ mod:hook_safe("CinematicSceneExtension", "setup_from_component", function(self)
     -- Outro is "outro_win" or "outro_fail"
     --if string_match(self._cinematic_name, "outro_") then
     if self._cinematic_name == "outro_win" then
-        if using_debug_mode then mod:echo("Mission success") end
+        echo_if_debug("Mission success")
         send_all_reminders("after_win")
     elseif self._cinematic_name == "outro_fail" then
-        if using_debug_mode then mod:echo("Mission failed") end
+        echo_if_debug("Mission failed")
         send_all_reminders("after_loss")
     end
 end)
@@ -138,7 +144,7 @@ end)
 --mod:hook_safe(LoadingView, "init", function(func, self, settings, context)
 --[[
 mod:hook(LoadingView, "init", function(func, self, settings, context)
-    if using_debug_mode then mod:echo("Entering load screen") end
+    echo_if_debug("Entering load screen")
     send_all_reminders("on_load_screen")
     func(self, settings, context)
 end)
@@ -159,7 +165,7 @@ mod:hook_safe(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, se
             
             if self._player_state_tracker[account_id].state ~= player_state then
                 if player_state == "dead" then
-                    if using_debug_mode then mod:echo("Player has died") end
+                    echo_if_debug("Player has died")
                     send_all_reminders("on_death")
                 end
             end
