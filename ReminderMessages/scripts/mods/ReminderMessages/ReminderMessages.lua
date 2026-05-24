@@ -21,6 +21,8 @@ local string_match = string.match
 local table = table
 local table_clone = table.clone
 local table_shallow_copy = table.shallow_copy
+local math = math
+local math_random = math.random
 
 -- #############################
 -- Mod Locals
@@ -96,7 +98,7 @@ local function send_all_reminders(event_name)
                     temp_current_lang = "en"
                 end
                 amount_of_messages = #(mod.messages[reminder_name][temp_current_lang])
-                index_to_use = math.random(1, amount_of_messages)
+                index_to_use = math_random(1, amount_of_messages)
                 if using_debug_mode then mod:echo("Index: "..tostring(index_to_use)) end
                 local message = mod.messages[reminder_name][temp_current_lang][index_to_use]
                 if use_echo then
