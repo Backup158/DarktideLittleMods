@@ -17,6 +17,12 @@ local widget_tabs = {
 		type = "checkbox",
 		default_value = false, 
 	},
+	{
+		setting_id = "im_feeling_lucky",
+		type = "numeric",
+		default_value = 0, 
+		range = {0, 10000000},
+	},
 }
 for message_option, _ in pairs(mod.messages) do
 	table.insert(widget_tabs, {

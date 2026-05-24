@@ -15,6 +15,12 @@ return {
 	enable_debug_mode = {
 		en = "Debug Mode",
 	},
+	im_feeling_lucky = {
+		en = "I'm Feeling Lucky",
+	},
+	im_feeling_lucky_description = {
+		en = "Enables a secret message option when the correct value is selected. It only checks upon game startup. Good luck :3",
+	},
 	--	Messages
 	message_use = {
 		en = "Message Avenue",
@@ -126,5 +132,13 @@ return {
 	heresy_description = {
 		-- dark red
 		en = "Reminds user to praise the dark gods.\n{#color(158, 0, 0)}=][= THE EMPEROR'S HOLY INQUISITION HAS BEEN ALERTED =][={#reset()}",
+	},
+	-- Secret Option :O
+	jav = {
+		en = "JAV",
+	},
+	jav_description = {
+		-- dark red
+		en = "Shows random Japanese Adult Video title.",
 	},
 }
