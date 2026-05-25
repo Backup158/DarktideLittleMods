@@ -178,7 +178,7 @@ end)
 
 mod:hook_safe("AttackReportManager", "_process_attack_result", function (self, buffer_data)
 	local victim_unit = buffer_data.attacked_unit
-	local attacking_unit = buffer_data.attacking_unit
+	--local attacking_unit = buffer_data.attacking_unit
 	local attack_result = buffer_data.attack_result
 
 	local killed_unit_data_extension = ScriptUnit.has_extension(victim_unit, "unit_data_system")
