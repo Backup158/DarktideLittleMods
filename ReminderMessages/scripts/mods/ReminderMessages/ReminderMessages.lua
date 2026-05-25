@@ -34,10 +34,6 @@ local Breed = require("scripts/utilities/breed")
 -- hmm read online that table access is similar for global/local
 -- local messages_cache = table_clone(mod.messages)
 local settings_messages = table_shallow_copy(mod.messages)
-local use_echo
-local use_notify
-local use_sound
-local using_debug_mode
 
 -- #############################
 -- Requirements
@@ -54,7 +50,6 @@ local current_language
 -- Helper Functions
 -- #############################
 local function refresh_settings_cache() 
-    using_debug_mode = mod:get("using_debug_mode")
     current_language = LocalizationManager._language
 
     for reminder_name, val in pairs(settings_messages) do
@@ -75,7 +70,7 @@ local function refresh_settings_cache()
 end
 
 local function echo_if_debug(message_string)
-    if using_debug_mode then
+    if mod:get("using_debug_mode") then
         mod:echo(message_string)
     end
 end
@@ -235,5 +230,5 @@ end
 
 function mod.on_setting_changed()
     refresh_settings_cache() 
-    --if mod.using_debug_mode then mod:echo("Settings changed") end
+    --if mod:get("using_debug_mode") then mod:echo("Settings changed") end
 end
