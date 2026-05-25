@@ -24,6 +24,10 @@ local table_shallow_copy = table.shallow_copy
 local math = math
 local math_random = math.random
 
+local AttackSettings = require("scripts/settings/damage/attack_settings")
+local attack_results = AttackSettings.attack_results
+local Breed = require("scripts/utilities/breed")
+
 -- #############################
 -- Mod Locals
 -- #############################
@@ -151,7 +155,10 @@ end)
 ]]
 
 -- Player Health
--- Death
+-- Death 
+-- ok this one spams 250 messages per death
+-- ALSO IT'S AN UPDATE FUNCTION SO IT RUNS EVERY TICK WAS THIS REALLY NECESSARY FOR SCOREBOARD :sob:
+--[[
 mod:hook_safe(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
     if unit then
         local player = Managers.player:player_by_unit(unit)
@@ -171,6 +178,40 @@ mod:hook_safe(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, se
             end
         end
     end
+end)
+]]
+
+mod:hook_safe("AttackReportManager", "_process_attack_result", function (self, buffer_data)
+	local victim_unit = buffer_data.attacked_unit
+	local attacking_unit = buffer_data.attacking_unit
+	local attack_result = buffer_data.attack_result
+
+	local killed_unit_data_extension = ScriptUnit.has_extension(victim_unit, "unit_data_system")
+	local killed_breed_or_nil = killed_unit_data_extension and killed_unit_data_extension:breed()
+	local killed_is_player = Breed.is_player(killed_breed_or_nil)
+	
+	if killed_is_player then
+        local id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate = Managers.player:local_player(1)
+		
+		local player_unit_spawn_manager = Managers.state.player_unit_spawn
+		local attacked_player = player_unit_spawn_manager:owner(victim_unit)
+		local victim_name = attacked_player:name()
+
+        echo_if_debug("Comparing: player = "..tostring(id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate).."; killed victim = "..tostring(victim_name))
+        if id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate == victim_name then
+            echo_if_debug("    Players are equivalent")
+        end
+		
+		if attack_result == attack_results.died then		
+            echo_if_debug("killed and died")
+            send_all_reminders("on_death")
+			--Check to avoid duplicates
+			--local killed_character_state_component = killed_unit_data_extension:read_component("character_state")
+			--local killed_is_dead = PlayerUnitStatus.is_dead(killed_character_state_component)
+        else
+            echo_if_debug("killed but not died")
+		end
+	end
 end)
 
 -- #########################################
