@@ -186,14 +186,15 @@ mod:hook_safe("AttackReportManager", "_process_attack_result", function (self, b
 	local killed_is_player = Breed.is_player(killed_breed_or_nil)
 	
 	if killed_is_player then
-        local id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate = Managers.player:local_player(1)
+        -- id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate
+        local user_player_id = Managers.player:local_player(1)
 		
 		local player_unit_spawn_manager = Managers.state.player_unit_spawn
 		local attacked_player = player_unit_spawn_manager:owner(victim_unit)
 		local victim_name = attacked_player:name()
 
-        echo_if_debug("Comparing: player = "..tostring(id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate).."; killed victim = "..tostring(victim_name))
-        if id_of_the_player_who_is_using_this_mod_how_do_i_use_you_in_this_context_second_person_as_a_variable_name_seems_oddly_inappropriate == victim_name then
+        echo_if_debug("Comparing: player = "..tostring(user_player_id).."; killed victim = "..tostring(victim_name))
+        if user_player_id == victim_name then
             echo_if_debug("    Players are equivalent")
         end
 		
