@@ -10,7 +10,7 @@ return {
         search_text = "Beast of Nurgle",
         replacement_text = "Grandpappy Nurgle's Big Puppy :3",
         localization_codes_to_replace = {
-            "loc_chaos_beast_of_nurgle",
+            "loc_breed_display_name_chaos_beast_of_nurgle",
         },
     },
     -- ================
