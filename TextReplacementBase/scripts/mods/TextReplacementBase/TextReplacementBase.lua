@@ -43,13 +43,17 @@ for i = 1, #localization_codes_to_replace do
         -- takes localization ID --> gets associated string with it
         local localization_code = localization_codes_to_replace[i].localization_codes_to_replace[k]
         local string_to_replace = managers.localization:_lookup(localization_code)
-        -- modifies that localization code
-        mod:add_global_localize_strings({
-            [localization_code] = {
-                -- string.sub relies on index, so i use gsub
-                en = string_regex_sub(string_to_replace, localization_codes_to_replace[i].search_text, localization_codes_to_replace[i].replacement_text),
-            }
-        })
+        if string_to_replace then
+            -- modifies that localization code
+            mod:add_global_localize_strings({
+                [localization_code] = {
+                    -- string.sub relies on index, so i use gsub
+                    [localization_codes_to_replace[i].language_id] = string_regex_sub(string_to_replace, localization_codes_to_replace[i].search_text, localization_codes_to_replace[i].replacement_text),
+                }
+            })
+        else
+            mod:error(mod:localize("localize_error_no_string")..localization_code)
+        end
     end
     
 end

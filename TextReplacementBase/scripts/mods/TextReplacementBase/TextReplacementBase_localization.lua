@@ -23,4 +23,7 @@ return {
 	command_dump_end = {
 		en = "Localization dump complete.",
 	},
+	localize_error_no_string = {
+		en = "Cannot localize ID. No valid value: ",
+	},
 }
