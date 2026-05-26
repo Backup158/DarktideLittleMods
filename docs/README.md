@@ -4,3 +4,4 @@ Defunct. Doesn't even work, and [Gift Shredder](https://www.nexusmods.com/warham
 
 # ReminderMessages
 Displays reminder messages in chat for certain real life activities, based on events happening in-game.
+
