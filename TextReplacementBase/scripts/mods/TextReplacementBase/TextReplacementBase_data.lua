@@ -7,7 +7,7 @@ return {
 	options = { 
 		widgets = {
 			{
-				name = "enable_debug_mode",
+				setting_id = "enable_debug_mode",
 				type = "checkbox",
 				default_value = false,
 			},
