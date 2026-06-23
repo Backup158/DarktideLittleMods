@@ -219,6 +219,7 @@ end)
 -- ############
 function mod.on_game_state_changed(status, state_name)
 	-- think this means "entering gameplay" from "hub"
+    -- mod:echo("state_name: "..state_name.."; status: "..status)
 	if state_name == "GameplayStateRun" and status == "enter" and Managers.state.mission:mission().name ~= "hub_ship" then
 		send_all_reminders("on_load_screen")
 	end
