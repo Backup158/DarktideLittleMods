@@ -53,4 +53,30 @@ return {
 	-- -------------
 	-- Sounds to Use
 	-- -------------
+	sounds_to_use = {
+		en = "Sounds to Play",
+	},
+	sounds_to_use_description = {
+		en = "Set keybinds for the following sound events. Leave the keybind blank for the ones you don't want to use.",
+	},
+	-- I'm using onomatopoeia as the description. That may not translate well, haha.
+	night_vision = {
+		en = "Night Vision Goggles",
+	},
+	night_vision_description = {
+		en = "Plays a *vweeeee* sound to mimic turning on night vision goggles (or night optical devices).",
+	},
+	fire_select = {
+		en = "Fire Selection Switch",
+	},
+	fire_select_description = {
+		en = "Plays a click sound to mimic flipping the fire selection switch on a gun.",
+	},
+	radio_chirp = {
+		en = "Radio Chirp",
+	},
+	radio_chirp_description = {
+		en = "Plays a radio *krrrch* sound. It plays once when you first press the button, then again when you let go of the button.",
+	},
+
 }
