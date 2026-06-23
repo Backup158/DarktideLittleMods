@@ -1,47 +1,67 @@
 local mod = get_mod("SimpleAudioTacticalSounds")
 
-local filled_widgets = {}
--- That's a few tables but idc the performance impact is one-time and not very different
-local widgets_to_add = {
-	{
-		name = "enable_debug_mode",
-		default_status = false, 
-	},
-	{
-		name = "enable_message_of_the_day",
-		default_status = false, 
-	},
-	{
-		name = "enable_messages_discard",
-		default_status = false, 
-	},
-	{
-		name = "enable_weapons_only",
-		default_status = false, 
-	},
-	{
-		name = "enable_max_level_only",
-		default_status = true, 
-	},
-}
-
-local function add_widget_toggle(widgets_table, widget_object)
-	widgets_table[#widgets_table + 1] = {
-		setting_id = widget_object["name"],
-		type = "checkbox",
-		default_value = widget_object["default_status"],
-	}
-end
-
-for _, obj in pairs(widgets_to_add) do
-	add_widget_toggle(filled_widgets, obj)
-end
-
 return {
-	name = "Discard Emperor's Gift",
+	name = mod:localize("mod_name"),
 	description = mod:localize("mod_description"),
 	is_togglable = true,
 	options = { 
-		widgets = filled_widgets,
+		widgets = {
+			{
+				setting_id = "enable_debug_mode",
+				type = "checkbox",
+				default_value = false, 
+			},
+			{
+				setting_id = "toggle_mod_keybind",
+				type = "keybind",
+				keybind_type = "mod_toggle", 
+			},
+			{
+				setting_id = "option_audio_plugin_to_use",
+				type = "dropdown",
+				default_value = "SimpleAudio",
+				options = {
+					{ 
+						text = "option_audio_plugin_to_use_simple_audio", 
+						value = "SimpleAudio",
+					},
+					{ 
+						text = "option_audio_plugin_to_use_audio", 
+						value = "Audio",
+					},
+					--[[ cba to actually support this
+					{ 
+						text = "option_audio_plugin_to_use_mini_audio", 
+						value = "MiniAudioAddon",
+					},
+					 ]]
+				}, 
+			},
+			{
+				setting_id = "sounds_to_use",
+				type = "group",
+				sub_widgets = {
+					{
+						setting_id = "night_vision",
+						type = "keybind",
+						keybind_type = "function_call", 
+						function_name = "play_night_vision", 
+					},
+					{
+						setting_id = "fire_select",
+						type = "keybind",
+						keybind_type = "function_call", 
+						function_name = "play_fire_select", 
+					},
+					{
+						setting_id = "radio_chirp",
+						type = "keybind",
+						keybind_trigger = "held",
+						keybind_type = "function_call", 
+						function_name = "play_radio_chirp", 
+					},
+				}
+			},
+		},
 	}
 }
