@@ -61,7 +61,7 @@ return {
 							{
 								setting_id = "night_vision_only_first",
 								type = "checkbox",
-								default_value = false, 
+								default_value = true, 
 							},
 						},
 					},
