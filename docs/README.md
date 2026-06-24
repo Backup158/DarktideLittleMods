@@ -16,7 +16,7 @@ Plays tactical foley audio through keybinds.
 Use this with [SimpleAudio](https://www.nexusmods.com/warhammer40kdarktide/mods/929) or the [Audio Plugin](https://www.nexusmods.com/warhammer40kdarktide/mods/196).
 
 > [!NOTE]
-> This mod ONLY plays the audio. It doesn't add any tactical features. The point is to use this with other mods, to give them a more tactical feel.
+> This mod ONLY plays the audio. It doesn't add any tactical features. The point is to use this with other mods, to give them a more tactical feel for all your cag erp needs.
 
 ## Sounds
 All sounds are in the `audio` folder, found immediately upon opening the mod folder (so next to the `.mod` file and `scripts` folder). Within this `audio` folder, the sub-folders hold the sounds for each event. When triggering the event, a random sound from the appropriate will be played. E.g. If the `night_vision` folder has `nvg_0.mp3` and `nvg_1.mp3`, whenever you press the keybind for Night Vision Goggles, it will choose a random one of those sounds to be played.
