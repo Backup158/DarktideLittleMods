@@ -14,6 +14,7 @@ return {
 			{
 				setting_id = "toggle_mod_keybind",
 				type = "keybind",
+				keybind_trigger = "pressed",
 				keybind_type = "mod_toggle", 
 			},
 			{
