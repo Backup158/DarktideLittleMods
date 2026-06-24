@@ -6,8 +6,11 @@ mod.version = "1.0.0"
 -- #############################
 
 local SimpleAudio
+local SimpleAudioRandom = {}
+
 local AudioPlugin
 local audio_files
+
 local audio_plugin_to_use
 
 -- #############################
@@ -26,8 +29,9 @@ end
 
 function mod.play_night_vision() 
     if audio_plugin_to_use == "SimpleAudio" then
-        SimpleAudio.play_file("night_vision/night-vision-device-version-2.mp3", {
+        SimpleAudioRandom.night_vision:play({
             audio_type = "sfx",
+            volume = "100",
         })
     elseif audio_plugin_to_use == "AudioPlugin" then
         AudioPlugin.play_file(audio_files:random("night_vision"), { audio_type = "sfx" })
@@ -36,8 +40,9 @@ end
 
 function mod.play_fire_select() 
     if audio_plugin_to_use == "SimpleAudio" then
-        SimpleAudio.play_file("fire_select/fire_select_rifle_0.ogg", {
+       SimpleAudioRandom.fire_select:play({
             audio_type = "sfx",
+            volume = "120",
         })
     elseif audio_plugin_to_use == "AudioPlugin" then
         AudioPlugin.play_file(audio_files:random("fire_select"), { audio_type = "sfx" })
@@ -45,8 +50,9 @@ function mod.play_fire_select()
 end
 function mod.play_radio_chirp() 
     if audio_plugin_to_use == "SimpleAudio" then
-        SimpleAudio.play_file("radio_chirp/walkie-talkie.mp3", {
+        SimpleAudioRandom.radio_chirp:play({
             audio_type = "sfx",
+            volume = "100",
         })
     elseif audio_plugin_to_use == "AudioPlugin" then
         AudioPlugin.play_file(audio_files:random("radio_chirp"), { audio_type = "sfx" })
@@ -72,6 +78,11 @@ function mod.on_all_mods_loaded()
     -- Registers file player if using Audio
     if AudioPlugin then
         audio_files = AudioPlugin.new_files_handler()
+    end
+    if SimpleAudio then
+        SimpleAudioRandom.night_vision = SimpleAudio.glob("night_vision/*")
+        SimpleAudioRandom.fire_select = SimpleAudio.glob("fire_select/*")
+        SimpleAudioRandom.radio_chirp = SimpleAudio.glob("radio_chirp/*")
     end
     check_which_audio_plugin_to_use()
 
