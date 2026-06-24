@@ -83,6 +83,11 @@ end
 -- #########################################
 -- Event Executions
 -- #########################################
+-- Command to reset night vision toggle state
+mod:command("tactical_sounds_reset_night_vision", mod:localize("command_reset_night_vision_state"), function()
+    night_vision_state_play_sound = true
+end)
+
 function mod.on_all_mods_loaded()
     mod:info("v" .. mod.version .. mod:localize("mod_version_logging_message"))
 

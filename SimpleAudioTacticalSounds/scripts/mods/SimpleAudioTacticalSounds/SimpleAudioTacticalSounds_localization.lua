@@ -16,6 +16,9 @@ return {
 	error_no_audio_frameworks = {
 		en = "No Audio frameworks are present. You need to have SimpleAudio OR Audio.",
 	},
+	command_reset_night_vision_state = {
+		en = "Resets alternating night vision sound state, to where the next button press would be Press #1. See the Mod Options for SimpleAudioTacticalSounds for more information.",
+	},
 	-- --------------------------
 	-- Widgets
 	-- --------------------------
@@ -73,7 +76,7 @@ return {
 		en = "Alternating activation",
 	},
 	night_vision_only_first_description = {
-		en = "Only plays sound every 2 times the button is pressed.\nPress #1 (sound plays) --> Press #2 (no sound) --> Press #3 (sound plays) --> Press #4 (no sound) and so on",
+		en = "Only plays sound every other time the button is pressed.\nPress #1 (sound plays) --> Press #2 (no sound) --> Press #3 (sound plays) --> Press #4 (no sound) and so on\n\nIf this gets out of sync with your ReShade toggle, type \"/tactical_sounds_reset_night_vision\" into chat to reset the state (where the next button press would be Press #1).",
 	},
 	fire_select = {
 		en = "Fire Selection Switch",
