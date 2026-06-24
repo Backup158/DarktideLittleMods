@@ -2,9 +2,13 @@ local mod = get_mod("SimpleAudioTacticalSounds")
 mod.version = "1.0.0"
 
 -- #############################
--- Requirements
+-- Data
 -- #############################
+local tonumber = tonumber
 
+-- ###############
+-- Mod Data
+-- ###############
 local SimpleAudio
 local SimpleAudioRandom = {}
 
@@ -34,7 +38,10 @@ function mod.base_play_custom_audio(audio_name, volume)
             volume = volume or "100",
         })
     elseif audio_plugin_to_use == "AudioPlugin" then
-        AudioPlugin.play_file(audio_files:random(audio_name), { audio_type = "sfx" })
+        AudioPlugin.play_file(audio_files:random(audio_name), { 
+            audio_type = "sfx",
+            volume = tonumber(volume) or 100
+        })
     end
 end
 
