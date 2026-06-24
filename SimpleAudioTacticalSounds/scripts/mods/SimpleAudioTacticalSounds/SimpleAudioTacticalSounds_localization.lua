@@ -17,7 +17,7 @@ return {
 		en = "No Audio frameworks are present. You need to have SimpleAudio OR Audio.",
 	},
 	command_reset_night_vision_state = {
-		en = "Resets alternating night vision sound state, to where the next button press would be Press #1. See the Mod Options for Tactical Foley for more information.",
+		en = "Resets alternating night vision sound state, where the next button press would be Press #1. See the Mod Options for Tactical Foley for more information.",
 	},
 	-- --------------------------
 	-- Widgets
