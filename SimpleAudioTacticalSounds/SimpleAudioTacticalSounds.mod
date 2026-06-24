@@ -8,6 +8,10 @@ return {
 			mod_localization = "SimpleAudioTacticalSounds/scripts/mods/SimpleAudioTacticalSounds/SimpleAudioTacticalSounds_localization",
 		})
 	end,
+	load_after = {
+		"Audio",
+		"SimpleAudio",
+	},
 	version = "1.0.0",
 	packages = {},
 }
