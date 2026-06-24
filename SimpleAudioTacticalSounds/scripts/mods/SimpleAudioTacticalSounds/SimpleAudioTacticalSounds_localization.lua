@@ -69,6 +69,12 @@ return {
 	night_vision_description = {
 		en = "Plays a *vweeeee* sound to mimic turning on night vision goggles (or night optical devices).",
 	},
+	night_vision_only_first = {
+		en = "Alternating activation",
+	},
+	night_vision_only_first_description = {
+		en = "Only plays sound every 2 times the button is pressed.\nPress #1 (sound plays) --> Press #2 (no sound) --> Press #3 (sound plays) --> Press #4 (no sound) and so on",
+	},
 	fire_select = {
 		en = "Fire Selection Switch",
 	},
@@ -76,7 +82,7 @@ return {
 		en = "Plays a click sound to mimic flipping the fire selection switch on a gun.",
 	},
 	radio_chirp = {
-		en = "Radio Chirp",
+		en = "Walkie-Talkie Chirp",
 	},
 	radio_chirp_description = {
 		en = "Plays a radio *krrrch* sound. It plays once when you first press the button, then again when you let go of the button.",

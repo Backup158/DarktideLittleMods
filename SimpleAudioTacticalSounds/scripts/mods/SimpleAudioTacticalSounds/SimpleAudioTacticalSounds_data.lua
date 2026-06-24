@@ -45,13 +45,25 @@ return {
 				type = "group",
 				sub_widgets = {
 					{
-						setting_id = "night_vision",
-						type = "keybind",
-						keybind_global = false,
-						keybind_trigger = "pressed",
-						keybind_type = "function_call", 
-						function_name = "play_night_vision", 
-						default_value = {}, 
+						setting_id = "night_vision_group",
+						title = "night_vision",
+						type = "group",
+						sub_widgets = {
+							{
+								setting_id = "night_vision",
+								type = "keybind",
+								keybind_global = false,
+								keybind_trigger = "pressed",
+								keybind_type = "function_call", 
+								function_name = "play_night_vision", 
+								default_value = {}, 
+							},
+							{
+								setting_id = "night_vision_only_first",
+								type = "checkbox",
+								default_value = false, 
+							},
+						},
 					},
 					{
 						setting_id = "fire_select",

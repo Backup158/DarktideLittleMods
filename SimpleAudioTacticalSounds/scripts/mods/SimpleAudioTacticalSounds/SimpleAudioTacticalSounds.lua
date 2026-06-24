@@ -16,6 +16,8 @@ local AudioPlugin
 local audio_files
 
 local audio_plugin_to_use
+local night_vision_alternating
+local night_vision_state_play_sound = true
 
 -- #############################
 -- Helper Functions
@@ -31,6 +33,14 @@ local function check_which_audio_plugin_to_use()
     end
 end
 
+local function refresh_settings_cache()
+    check_which_audio_plugin_to_use()
+    night_vision_alternating = mod:get("night_vision_only_first")
+end
+
+-- ###############
+-- Play Sound
+-- ###############
 function mod.base_play_custom_audio(audio_name, volume)
     if audio_plugin_to_use == "SimpleAudio" then
         SimpleAudioRandom[audio_name]:play({
@@ -46,7 +56,16 @@ function mod.base_play_custom_audio(audio_name, volume)
 end
 
 function mod.play_night_vision() 
-    mod.base_play_custom_audio("night_vision", "100")
+    if not night_vision_alternating then
+        mod.base_play_custom_audio("night_vision", "100")
+        -- Doesn't need to do the rest of the checks if not using alternating mode
+        return
+    -- Using alternating mode
+    elseif night_vision_state_play_sound then
+        mod.base_play_custom_audio("night_vision", "100")
+    end
+    -- Switches current state regardless of if audio played
+    night_vision_state_play_sound = not night_vision_state_play_sound
 end
 
 function mod.play_fire_select() 
@@ -82,10 +101,10 @@ function mod.on_all_mods_loaded()
         SimpleAudioRandom.fire_select = SimpleAudio.glob("fire_select/*")
         SimpleAudioRandom.radio_chirp = SimpleAudio.glob("radio_chirp/*")
     end
-    check_which_audio_plugin_to_use()
-
+    
+    refresh_settings_cache()
 end
 
 function mod.on_setting_changed()
-    check_which_audio_plugin_to_use()
+    refresh_settings_cache()
 end
