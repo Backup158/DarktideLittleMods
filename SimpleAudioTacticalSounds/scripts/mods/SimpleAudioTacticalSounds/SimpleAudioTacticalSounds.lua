@@ -37,12 +37,12 @@ local function play_night_vision()
 end
 
 local function play_fire_select() 
-    
+    mod:echo("testing nfire selct")
 
 end
 
 local function play_radio_chirp() 
-    
+    mod:echo("testing radio")
 
 end
 
