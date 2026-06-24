@@ -13,6 +13,9 @@ return {
 	mod_version_logging_message = {
 		en = " loaded uwu nya :3",
 	},
+	error_no_audio_frameworks = {
+		en = "No Audio frameworks are present. You need to have SimpleAudio OR Audio.",
+	},
 	-- --------------------------
 	-- Widgets
 	-- --------------------------
