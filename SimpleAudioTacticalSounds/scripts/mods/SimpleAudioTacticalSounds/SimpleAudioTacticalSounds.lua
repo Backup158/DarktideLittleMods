@@ -24,7 +24,7 @@ local function check_which_audio_plugin_to_use()
     end
 end
 
-local function play_night_vision() 
+function mod.play_night_vision() 
     mod:echo("testing night vision")
     if audio_plugin_to_use == "SimpleAudio" then
         SimpleAudio.play_file("night_vision/night-vision-device-version-2.mp3", {
@@ -36,12 +36,12 @@ local function play_night_vision()
 
 end
 
-local function play_fire_select() 
+function mod.play_fire_select() 
     mod:echo("testing nfire selct")
 
 end
 
-local function play_radio_chirp() 
+function mod.play_radio_chirp() 
     mod:echo("testing radio")
 
 end
