@@ -4,7 +4,7 @@ local mod = get_mod("SimpleAudioTacticalSounds")
 
 return {
 	mod_name = {
-		en = "Tactical Sounds (SimpleAudio)",
+		en = "Tactical Foley",
 	},
 	mod_description = {
 		en = "Plays various tactical sounds on button press.",
@@ -17,7 +17,7 @@ return {
 		en = "No Audio frameworks are present. You need to have SimpleAudio OR Audio.",
 	},
 	command_reset_night_vision_state = {
-		en = "Resets alternating night vision sound state, to where the next button press would be Press #1. See the Mod Options for SimpleAudioTacticalSounds for more information.",
+		en = "Resets alternating night vision sound state, to where the next button press would be Press #1. See the Mod Options for Tactical Foley for more information.",
 	},
 	-- --------------------------
 	-- Widgets
