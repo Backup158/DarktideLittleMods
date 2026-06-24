@@ -27,36 +27,27 @@ local function check_which_audio_plugin_to_use()
     end
 end
 
-function mod.play_night_vision() 
+function mod.base_play_custom_audio(audio_name, volume)
     if audio_plugin_to_use == "SimpleAudio" then
-        SimpleAudioRandom.night_vision:play({
+        SimpleAudioRandom[audio_name]:play({
             audio_type = "sfx",
-            volume = "100",
+            volume = volume or "100",
         })
     elseif audio_plugin_to_use == "AudioPlugin" then
-        AudioPlugin.play_file(audio_files:random("night_vision"), { audio_type = "sfx" })
+        AudioPlugin.play_file(audio_files:random(audio_name), { audio_type = "sfx" })
     end
 end
 
-function mod.play_fire_select() 
-    if audio_plugin_to_use == "SimpleAudio" then
-       SimpleAudioRandom.fire_select:play({
-            audio_type = "sfx",
-            volume = "120",
-        })
-    elseif audio_plugin_to_use == "AudioPlugin" then
-        AudioPlugin.play_file(audio_files:random("fire_select"), { audio_type = "sfx" })
-    end
+function mod.play_night_vision() 
+    mod.base_play_custom_audio("night_vision", "100")
 end
+
+function mod.play_fire_select() 
+    mod.base_play_custom_audio("fire_select", "120")
+end
+
 function mod.play_radio_chirp() 
-    if audio_plugin_to_use == "SimpleAudio" then
-        SimpleAudioRandom.radio_chirp:play({
-            audio_type = "sfx",
-            volume = "100",
-        })
-    elseif audio_plugin_to_use == "AudioPlugin" then
-        AudioPlugin.play_file(audio_files:random("radio_chirp"), { audio_type = "sfx" })
-    end
+    mod.base_play_custom_audio("radio_chirp", "100")
 end
 
 -- #########################################
