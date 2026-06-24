@@ -44,12 +44,14 @@ return {
 					{
 						setting_id = "night_vision",
 						type = "keybind",
+						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_night_vision", 
 					},
 					{
 						setting_id = "fire_select",
 						type = "keybind",
+						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_fire_select", 
 					},
