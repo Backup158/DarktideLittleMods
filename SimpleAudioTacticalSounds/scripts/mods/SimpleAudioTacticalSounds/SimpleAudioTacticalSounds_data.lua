@@ -16,6 +16,7 @@ return {
 				type = "keybind",
 				keybind_trigger = "pressed",
 				keybind_type = "mod_toggle", 
+				default_value = {}, 
 			},
 			{
 				setting_id = "option_audio_plugin_to_use",
@@ -48,6 +49,7 @@ return {
 						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_night_vision", 
+						default_value = {}, 
 					},
 					{
 						setting_id = "fire_select",
@@ -55,6 +57,7 @@ return {
 						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_fire_select", 
+						default_value = {}, 
 					},
 					{
 						setting_id = "radio_chirp",
@@ -62,6 +65,7 @@ return {
 						keybind_trigger = "held",
 						keybind_type = "function_call", 
 						function_name = "play_radio_chirp", 
+						default_value = {}, 
 					},
 				}
 			},
