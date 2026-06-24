@@ -14,6 +14,7 @@ return {
 			{
 				setting_id = "toggle_mod_keybind",
 				type = "keybind",
+				keybind_global = false,
 				keybind_trigger = "pressed",
 				keybind_type = "mod_toggle", 
 				default_value = {}, 
@@ -46,6 +47,7 @@ return {
 					{
 						setting_id = "night_vision",
 						type = "keybind",
+						keybind_global = false,
 						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_night_vision", 
@@ -54,6 +56,7 @@ return {
 					{
 						setting_id = "fire_select",
 						type = "keybind",
+						keybind_global = false,
 						keybind_trigger = "pressed",
 						keybind_type = "function_call", 
 						function_name = "play_fire_select", 
@@ -62,6 +65,7 @@ return {
 					{
 						setting_id = "radio_chirp",
 						type = "keybind",
+						keybind_global = false,
 						keybind_trigger = "held",
 						keybind_type = "function_call", 
 						function_name = "play_radio_chirp", 

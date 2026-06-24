@@ -25,7 +25,6 @@ local function check_which_audio_plugin_to_use()
 end
 
 function mod.play_night_vision() 
-    mod:echo("testing night vision")
     if audio_plugin_to_use == "SimpleAudio" then
         SimpleAudio.play_file("night_vision/night-vision-device-version-2.mp3", {
             audio_type = "sfx",
@@ -33,17 +32,25 @@ function mod.play_night_vision()
     elseif audio_plugin_to_use == "AudioPlugin" then
         AudioPlugin.play_file(audio_files:random("night_vision"), { audio_type = "sfx" })
     end
-
 end
 
 function mod.play_fire_select() 
-    mod:echo("testing nfire selct")
-
+    if audio_plugin_to_use == "SimpleAudio" then
+        SimpleAudio.play_file("fire_select/fire_select_rifle_0.ogg", {
+            audio_type = "sfx",
+        })
+    elseif audio_plugin_to_use == "AudioPlugin" then
+        AudioPlugin.play_file(audio_files:random("fire_select"), { audio_type = "sfx" })
+    end
 end
-
 function mod.play_radio_chirp() 
-    mod:echo("testing radio")
-
+    if audio_plugin_to_use == "SimpleAudio" then
+        SimpleAudio.play_file("radio_chirp/walkie-talkie.mp3", {
+            audio_type = "sfx",
+        })
+    elseif audio_plugin_to_use == "AudioPlugin" then
+        AudioPlugin.play_file(audio_files:random("radio_chirp"), { audio_type = "sfx" })
+    end
 end
 
 -- #########################################
