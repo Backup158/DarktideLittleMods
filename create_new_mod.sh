@@ -19,5 +19,5 @@ cp -r "./${template_name}" "./${mod_name}"
 # Renames files
 #   Finds all files recursively, then replaces the template name with the mod name. The {} ";" is for -exec to have no placeholder and a ; delimiter
 find -name "*" -exec rename "s/${template_name}/${mod_name}/" {} ";"
-# Replaces name instance in files
-sed -i "s/${template_name}/${mod_name}/g" *
+# Replaces name instance in mod files
+sed -i "s/${template_name}/${mod_name}/g" "./${mod_name}/*"
