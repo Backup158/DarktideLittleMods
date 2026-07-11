@@ -21,5 +21,7 @@ all_files_in_new_mod="./${mod_name}/*"
 # Renames files
 #   Finds all files recursively, then replaces the template name with the mod name. The {} ";" is for -exec to have no placeholder and a ; delimiter
 find -name "${all_files_in_new_mod}" -exec rename "s/${template_name}/${mod_name}/" {} ";"
+echo "Renamed mod file names"
 # Replaces name instance in mod files
 sed -i "s/${template_name}/${mod_name}/g" "${all_files_in_new_mod}"
+echo "Replaced contents of mod files"
