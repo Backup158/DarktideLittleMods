@@ -1,4 +1,4 @@
-local mod = get_mod("ReminderMessages")
+local mod = get_mod("TemplateMod")
 mod.version = "1.0.0"
 
 -- #############################

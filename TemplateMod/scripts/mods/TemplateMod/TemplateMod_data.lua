@@ -1,4 +1,4 @@
-local mod = get_mod("ReminderMessages")
+local mod = get_mod("TemplateMod")
 
 local filled_widgets = {}
 -- That's a few tables but idc the performance impact is one-time and not very different
@@ -38,7 +38,7 @@ for _, obj in pairs(widgets_to_add) do
 end
 
 return {
-	name = "Discard Emperor's Gift",
+	name = mod:localize("mod_name"),
 	description = mod:localize("mod_description"),
 	is_togglable = true,
 	options = { 

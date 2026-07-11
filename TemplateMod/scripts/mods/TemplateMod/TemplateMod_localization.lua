@@ -1,6 +1,4 @@
-local mod = get_mod("ReminderMessages")
-
-
+local mod = get_mod("TemplateMod")
 
 return {
 	mod_name = {
