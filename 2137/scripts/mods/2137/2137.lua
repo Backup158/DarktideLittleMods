@@ -17,7 +17,7 @@ local simple_audio_random
 -- #############################
 -- Helper Functions
 -- #############################
-function mod.crash_game(play_id)
+local function crash_game(play_id)
     -- Triggering a deadlock
     for i = 1, 9999 do
         mod:echo("HAHAHAHHAHAHAHAH")
