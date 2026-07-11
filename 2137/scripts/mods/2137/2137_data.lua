@@ -1,4 +1,4 @@
-local mod = get_mod("2134")
+local mod = get_mod("2137")
 
 local filled_widgets = {}
 -- That's a few tables but idc the performance impact is one-time and not very different
