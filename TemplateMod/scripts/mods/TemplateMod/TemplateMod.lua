@@ -2,8 +2,15 @@ local mod = get_mod("TemplateMod")
 mod.version = "1.0.0"
 
 -- #############################
--- Requirements
+-- Data
 -- #############################
+-- ###############
+-- Requirements and Performance
+-- ###############
+
+-- ###############
+-- Mod Locals
+-- ###############
 
 -- #############################
 -- Helper Functions
