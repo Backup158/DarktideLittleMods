@@ -25,7 +25,7 @@ mod.version = "1.0.0"
 -- Event Executions
 -- #########################################
 function mod.on_all_mods_loaded()
-    mod:info("v" .. mod.version .. mod:localize("mod_version_logging_message"))
+    mod:info("v"..mod.version.." loaded uwu nya :3")
 end
 
 function mod.on_setting_changed()
