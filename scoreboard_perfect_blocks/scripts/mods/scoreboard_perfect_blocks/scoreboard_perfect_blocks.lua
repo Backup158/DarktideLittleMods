@@ -13,6 +13,7 @@ mod.version = "1.0.0"
 -- ###############
 local scoreboard = get_mod("scoreboard")
 local scoreboard_row_name = "perfect_blocks"
+local debug
 
 mod.scoreboard_rows = {
 	{
@@ -28,7 +29,9 @@ mod.scoreboard_rows = {
 -- #############################
 -- Helper Functions
 -- #############################
-
+local function refresh_settings_cache()
+	debug = mod:get("enable_debug_mode")
+end
 
 -- #########################################
 -- Hooks
@@ -49,12 +52,13 @@ mod:hook_require("scripts/managers/attack_report/attack_report_manager", functio
 		end
 
 		-- Only care if it's a blocked attack
-		if not tostring(attack_result) == "blocked" then
+		if not (tostring(attack_result) == "blocked") then
 			return
 		end
 
 		local attack_result_id = NetworkLookup.attack_results[attack_result]
-		local attack_type_id = attack_type and NetworkLookup.attack_types[attack_type]
+		-- Attack result ID always seems to be 1 for blocked, regardless of perfect or not
+		local attack_type_id = NetworkLookup.attack_types[attack_result_id]
 		mod:info("Attack result: "..tostring(attack_result))
 		mod:info("Attack result id: "..tostring(attack_result_id))
 		mod:info("Attack type id: "..tostring(attack_type_id))
@@ -74,7 +78,9 @@ mod:hook(CLASS.WeaponSystem, "rpc_player_blocked_attack", function(func, self, c
 	--local weapon_template = WeaponTemplates[weapon_template_name]
 	local attack_type = NetworkLookup.attack_types[attack_type_id]
 	-- Gets player info to use to check weapon
-	mod:echo("rpc_blocked_attack by "..tostring(player_unit).." (Player: "..tostring(player)..") Attack type: "..tostring(attack_type))
+	if debug then 
+		mod:echo("rpc_blocked_attack by "..tostring(player_unit).." (Player: "..tostring(player)..") Attack type: "..tostring(attack_type)) 
+	end
 	-- At this point, it calls Block.player_blocked_attack(). That'd be great to hook into, but it only works in offline lol.
 end)
 
@@ -82,9 +88,10 @@ end)
 mod:hook_require("scripts/utilities/attack/block", function(instance)
 	mod:hook(instance, "player_blocked_attack", function(self, target_unit, attacking_unit, hit_world_position, block_broken, weapon_template, attack_type, block_cost, is_perfect_block, ...)
 		if is_perfect_block then
-			mod:echo("Offline: Perfect Block performed")
-			local player = target_unit
-			scoreboard:update_stat(scoreboard_row_name, player, 1)
+			if debug then mod:echo("Offline: Perfect Block performed") end
+			local player = Managers.player:player_by_unit(target_unit)
+			local account_id = player:account_id() or player:name()
+			scoreboard:update_stat(scoreboard_row_name, account_id, 1)
 		end
     end)
 end)
@@ -93,10 +100,12 @@ end)
 -- Event Executions
 -- #########################################
 function mod.on_all_mods_loaded()
+	refresh_settings_cache()
     mod:info("v" .. mod.version .. mod:localize("mod_version_logging_message"))
 end
 
 function mod.on_setting_changed()
+	refresh_settings_cache()
     --if mod.using_debug_mode then mod:echo("Settings changed") end
 end
 
