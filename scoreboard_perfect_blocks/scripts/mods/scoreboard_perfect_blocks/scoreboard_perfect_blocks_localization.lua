@@ -11,4 +11,10 @@ return {
 	mod_version_logging_message = {
 		en = " loaded uwu nya :3",
 	},
+	enable_debug_mode = {
+		en = "Enable Debug Mode",
+	},
+	perfect_blocks = {
+		en = "Perfect Blocks"
+	},
 }
